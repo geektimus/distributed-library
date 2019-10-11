@@ -34,6 +34,8 @@ lazy val http =
     .settings(settings)
     .settings(
       libraryDependencies ++= Seq(
+          library.akkaHttp,
+          library.akkaStream,
           library.log4j2Api,
           library.log4j2Core,
           library.log4j2Scala,
@@ -57,7 +59,12 @@ lazy val library =
       val slf4j        = "2.12.0"
       val scalaCheck   = "1.14.0"
       val specs2       = "4.4.1"
+      val akkaHttp     = "10.1.10"
+      val akkaStream   = "2.5.23"
     }
+
+    val akkaHttp    = "com.typesafe.akka" %% "akka-http"   % Version.akkaHttp
+    val akkaStream  = "com.typesafe.akka" %% "akka-stream" % Version.akkaStream
 
     val log4j2Api   = "org.apache.logging.log4j" % "log4j-api" % Version.log4j2
     val log4j2Core  = "org.apache.logging.log4j" % "log4j-core" % Version.log4j2 % Runtime
