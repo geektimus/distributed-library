@@ -1,4 +1,3 @@
-
 // *****************************************************************************
 // Project Definitions
 // *****************************************************************************
@@ -8,6 +7,30 @@ lazy val `distributed-library` =
     .in(file("."))
     .enablePlugins(AutomateHeaderPlugin, GitVersioning)
     .settings(name := "Distributed Library")
+    .aggregate(core, http)
+
+lazy val core =
+  project
+    .in(file("core"))
+    .enablePlugins(AutomateHeaderPlugin, GitVersioning)
+    .settings(name := "Distributed Library Core")
+    .settings(settings)
+    .settings(
+      libraryDependencies ++= Seq(
+          library.log4j2Api,
+          library.log4j2Core,
+          library.log4j2Scala,
+          library.slf4j,
+          library.scalaCheck % Test,
+          library.specs2 % Test
+        )
+    )
+
+lazy val http =
+  project
+    .in(file("http"))
+    .enablePlugins(AutomateHeaderPlugin, GitVersioning)
+    .settings(name := "Distributed Library HTTP")
     .settings(settings)
     .settings(
       libraryDependencies ++= Seq(
